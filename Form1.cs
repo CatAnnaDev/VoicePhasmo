@@ -5,11 +5,13 @@ using System.Runtime.InteropServices;
 using System.Speech.Recognition;
 using System.Threading;
 using System.Windows.Forms;
+using Accord.DirectSound;
 
 namespace VoicePhasmo
 {
     public partial class Form1 : Form
     {
+        
         SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
 
         [DllImport("user32")]
@@ -32,15 +34,14 @@ namespace VoicePhasmo
         }
 
         public Form1()
-        {
+        { 
             InitializeComponent();
         }
 
         private void btnEnable_Click(object sender, EventArgs e)
         {
             recEngine.RecognizeAsync(RecognizeMode.Multiple);
-            btnDisable.Visible = true;
-            richTextBox1.Text = "- Log - Voice Enabled";
+            richTextBox2.Text = "-- LOG --  Voice Enabled";
         }
 
         [STAThread]
@@ -61,8 +62,11 @@ namespace VoicePhasmo
             string screenHeight = Screen.PrimaryScreen.Bounds.Height.ToString();
             label1.Text = "Resolution: " + screenWidth + " x " + screenHeight;
 
-
-            //label2.Text = "Micro: " + device.DeviceFriendlyName;
+            var collection = new AudioDeviceCollection(AudioDeviceCategory.Capture);
+            var defaultDevice = collection.Default;
+            foreach (var device in collection)
+                //Console.WriteLine(device.ToString());
+                label2.Text = $"Micro: {defaultDevice}";
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -77,7 +81,8 @@ namespace VoicePhasmo
                         "Mon Nom : return PsykoDev. \n" +
                         "Ouvre Phasmo / Lance Phasmo : Launch Phasmophobia from Steam cli. \n" +
                         "Mets les objets / Ajoute les objets : Put all item from yout inventory. \n" +
-                        "Partie privée / Lance une partie privée : create a private game and add all items. \n";
+                        "Partie privée / Lance une partie privée : create a private game and add all items. \n" + 
+                        "Copie le code : copie le code dans le clipboard et le set en label";
                     break;
 
                 case "arrête d'écouter":
@@ -86,7 +91,7 @@ namespace VoicePhasmo
                         richTextBox1.Text += "\n[Recognized] 'arrête d'écouter'";
                     }
                     recEngine.RecognizeAsyncStop();
-                    richTextBox1.Text = "- Log - Disabled Voice";
+                    richTextBox2.Text = "-- LOG --  Voice Disabled";
                     break;
 
                 case "Coucou":
@@ -183,7 +188,7 @@ namespace VoicePhasmo
 
         public void Code2k()
         {
-            ObjetsClick(2004, 203);
+            //ObjetsClick(2004, 203);
             ObjetsClick(2004, 271);
             if (Clipboard.ContainsText(TextDataFormat.Text))
             {
@@ -195,7 +200,7 @@ namespace VoicePhasmo
 
         public void CodeHD()
         {
-            ObjetsClick(1500, 150);
+            //ObjetsClick(1500, 150);
             ObjetsClick(1500, 200);
             if (Clipboard.ContainsText(TextDataFormat.Text))
             {
@@ -209,7 +214,7 @@ namespace VoicePhasmo
         {
             recEngine.RecognizeAsyncStop();
             btnEnable.Visible = true;
-            richTextBox1.Text = "- Log - Voice Disabled";
+            richTextBox2.Text = "-- LOG --  Voice Disabled";
         }
 
         public void PvGame2k()
@@ -292,6 +297,11 @@ namespace VoicePhasmo
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
         }
     }
 }
