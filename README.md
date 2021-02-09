@@ -1,7 +1,7 @@
 # VoicePhasmo
 
-Voice recognition for Phasmophobia game ( FRENCH ONLY )
-!! Launch " VoicePhasmo.exe " as administrator if mouse don't move !!
+Voice recognition for Phasmophobia game ( FRENCH ONLY ) <br>
+!! Launch " VoicePhasmo.exe " as administrator if the cursor don't move !!
 
 # Commands
 * Arrête d'écouter : Disable voirce recognition. <br>
