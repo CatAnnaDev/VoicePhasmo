@@ -80,7 +80,7 @@ namespace VoicePhasmo
                         "Coucou / Salut : Say Hellow in back.\n" +
                         "Mon Nom : return PsykoDev. \n" +
                         "Ouvre Phasmo / Lance Phasmo : Launch Phasmophobia from Steam cli. \n" +
-                        "Mets les objets / Ajoute les objets : Put all item from yout inventory. \n" +
+                        "Mets les objets / Ajoute les objets : Put all items from your inventory. \n" +
                         "Partie privée / Lance une partie privée : create a private game and add all items. \n" + 
                         "Copie le code : copie le code dans le clipboard et le set en label";
                     break;
