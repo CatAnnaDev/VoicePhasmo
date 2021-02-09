@@ -13,7 +13,7 @@ Voice recognition for Phasmophobia game ( FRENCH ONLY ) <br>
 
 # Screen
 
-![](https://cdn.discordapp.com/attachments/771375636358103081/808518607339520070/unknown.png)
+![](https://cdn.discordapp.com/attachments/771375636358103081/808628333788790824/unknown.png)
 
 # ChangeLog
 
