@@ -43,10 +43,11 @@ namespace VoicePhasmo
             richTextBox1.Text = "- Log - Voice Enabled";
         }
 
+        [STAThread]
         private void Form1_Load(object sender, EventArgs e)
         {
             Choices commands = new Choices();
-            commands.Add(new string[] { "Coucou", "Salut", "mon nom", "ouvre fasmo", "Lance Phasmo", "mets les objets", "ajoute les objets", "partie privée", "Lance une partie privée", "arrête d'écouter", "Command", "test" });
+            commands.Add(new string[] { "Coucou", "Salut", "mon nom", "ouvre fasmo", "Lance Phasmo", "mets les objets", "ajoute les objets", "partie privée", "Lance une partie privée", "arrête d'écouter", "Command", "Copie le code" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Culture = new System.Globalization.CultureInfo("fr-FR");
             gBuilder.Append(commands);
@@ -90,7 +91,6 @@ namespace VoicePhasmo
 
                 case "Coucou":
                 case "Salut":
-                    richTextBox1.Text += $"\n[Size] {screen}";
                     if (checkBox1.Checked)
                     {
                         richTextBox1.Text += "\n[Recognized] 'Coucou'";
@@ -108,11 +108,11 @@ namespace VoicePhasmo
 
                 case "ouvre fasmo":
                 case "Lance Phasmo":
+                    richTextBox1.Text += "\n[LOG]Ouverture de Phasmophobia";
                     if (checkBox1.Checked)
                     {
                         richTextBox1.Text += "\n[Recognized] 'Ouvre Phasmo'";
                     }
-                    richTextBox1.Text += "\n[LOG]Ouverture de Phasmophobia";
                     Process cmd = new Process();
                     cmd.StartInfo.FileName = @"cmd.exe";
                     cmd.StartInfo.WorkingDirectory = @"C:\Program Files (x86)\Steam\";
@@ -122,8 +122,8 @@ namespace VoicePhasmo
 
                 case "mets les objets":
                 case "ajoute les objets":
-                    richTextBox1.Text += $"\n[Size] {screen}";
                     richTextBox1.Text += "\n[LOG]Placement de tout les items dispo";
+                    richTextBox1.Text += $"\n[Size] {screen}";
                     if (checkBox1.Checked)
                     {
                         richTextBox1.Text += "\n[Recognized] 'Met les objets'";
@@ -155,16 +155,54 @@ namespace VoicePhasmo
                     PvGame2k();
                     richTextBox1.Text += "\n[LOG]Finit";
                     break;
-                case "test":
-                    richTextBox1.Text += "\n[LOG]Lancement d'un Test";
-                    Test();
+                case "Copie le code":
+                    richTextBox1.Text += "\n[LOG]Code copier";
+                    if (checkBox1.Checked)
+                    {
+                        richTextBox1.Text += "\n[Recognized] 'Partie Privée'";
+                    }
+                    if (screen != 1440)
+                    {
+                        CodeHD();
+                        if (Clipboard.ContainsText(TextDataFormat.Text))
+                        {
+                            string clipboardText = Clipboard.GetText(TextDataFormat.Text);
+                            richTextBox1.Text += $"\n[CODE] {clipboardText}";
+                        }
+                        
+                    }
+                    Code2k();
+                    if (Clipboard.ContainsText(TextDataFormat.Text))
+                    {
+                        string clipboardText = Clipboard.GetText(TextDataFormat.Text);
+                        richTextBox1.Text += $"\n[CODE] {clipboardText}";
+                    }
                     break;
             }
         }
 
-        public void Test()
+        public void Code2k()
         {
-            ObjetsClick(1522, 963);
+            ObjetsClick(2004, 203);
+            ObjetsClick(2004, 271);
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                string clipboardText = Clipboard.GetText(TextDataFormat.Text);
+                richTextBox1.Text += $"\n[CODE] {clipboardText}";
+                label3.Text = $"Code: {clipboardText}";
+            }
+        }
+
+        public void CodeHD()
+        {
+            ObjetsClick(1500, 150);
+            ObjetsClick(1500, 200);
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                string clipboardText = Clipboard.GetText(TextDataFormat.Text);
+                richTextBox1.Text += $"\n[CODE] {clipboardText}";
+                label3.Text = $"Code: {clipboardText}";
+            }
         }
 
         private void btnDisable_Click(object sender, EventArgs e)
@@ -180,6 +218,8 @@ namespace VoicePhasmo
             ObjetsClick(1315, 394);//Private Game   
             Thread.Sleep(2000);
             Objet2k();
+            Thread.Sleep(700);
+            Code2k();
         }
 
         public void Objet2k()
@@ -218,6 +258,8 @@ namespace VoicePhasmo
             ObjetsClick(990, 300);//Private Game
             Thread.Sleep(2000);
             ObjetHD();
+            Thread.Sleep(700);
+            CodeHD();
         }
 
         public void ObjetHD()
