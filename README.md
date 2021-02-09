@@ -17,6 +17,12 @@ Voice recognition for Phasmophobia game ( FRENCH ONLY ) <br>
 
 # ChangeLog
 
+* UI Rework
+* Micro Detection ( WIP )
+* Game code to join added
+* Print Code in log
+* Command to copy Code in clipboard
+* Clear log button
 * Add 1440p / 1080p resolution
 * Display your screen resolution in app
 * More accurate in French language
