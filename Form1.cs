@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.Speech.Recognition;
 using System.Threading;
 using System.Windows.Forms;
-using NAudio.CoreAudioApi;
 
 namespace VoicePhasmo
 {
@@ -61,10 +60,8 @@ namespace VoicePhasmo
             string screenHeight = Screen.PrimaryScreen.Bounds.Height.ToString();
             label1.Text = "Resolution: " + screenWidth + " x " + screenHeight;
 
-            MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
-            var devices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
-            foreach (var device in devices)
-            label2.Text = "Micro: " + device.DeviceFriendlyName;
+
+            //label2.Text = "Micro: " + device.DeviceFriendlyName;
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
