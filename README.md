@@ -13,3 +13,10 @@ Voice recognition for Phasmophobia game ( FRENCH ONLY )
 # Screen
 
 ![](https://cdn.discordapp.com/attachments/771375636358103081/808518607339520070/unknown.png)
+
+# ChangeLog
+
+* Add 1440p / 1080p resolution
+* Display your screen resolution in app
+* More accurate in French language
+* clean code
